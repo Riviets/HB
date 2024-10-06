@@ -26,7 +26,7 @@
                 @foreach($hotels as $hotel)
                     <tr>
                         <td>{{ $hotel->id }}</td>
-                        <td>{{ $hotel->name }}</td>
+                        <td><a href="{{ route('hotels.show', $hotel->id) }}">{{ $hotel->name }}</a></td>
                         <td>{{ $hotel->description }}</td>
                         <td>{{ $hotel->location }}</td>
                         <td>{{ $hotel->rating }}</td>

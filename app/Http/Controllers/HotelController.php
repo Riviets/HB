@@ -29,9 +29,10 @@ class HotelController extends Controller
 
     public function show($id)
     {
-        $hotel = Hotel::findOrFail($id);
-        return response()->json($hotel);
+        $hotel = Hotel::with('rooms')->findOrFail($id);
+        return view('hotels.show', compact('hotel'));
     }
+
 
     public function update(Request $request, $id)
     {

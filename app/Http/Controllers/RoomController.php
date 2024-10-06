@@ -28,11 +28,11 @@ class RoomController extends Controller
             'capacity' => 'required|integer',
             'price_per_night' => 'required|numeric|min:0',
         ]);
-
-        Room::create($request->all());
-        return redirect()->route('rooms.index')->with('success', 'Кімната успішно додана!');
+    
+        $room = Room::create($request->all());
+        return redirect()->route('hotels.show', $room->hotel_id)->with('success', 'Кімната успішно додана!');
     }
-
+    
     public function show($id)
     {
         $room = Room::findOrFail($id);
@@ -57,13 +57,13 @@ class RoomController extends Controller
 
         $room = Room::findOrFail($id);
         $room->update($request->all());
-        return redirect()->route('rooms.index')->with('success', 'Кімната успішно оновлена!');
+        return redirect()->route('hotels.show', $room->hotel_id)->with('success', 'Кімната успішно оновлена!');
     }
 
     public function destroy($id)
     {
         $room = Room::findOrFail($id);
         $room->delete();
-        return redirect()->route('rooms.index')->with('success', 'Кімната успішно видалена!');
+        return redirect()->route('hotels.show', $room->hotel_id)->with('success', 'Кімната успішно видалена!');
     }
 }
