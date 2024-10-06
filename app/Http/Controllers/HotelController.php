@@ -10,8 +10,9 @@ class HotelController extends Controller
     public function index()
     {
         $hotels = Hotel::all();
-        return response()->json($hotels);
+        return view('hotels.index', compact('hotels'));
     }
+
 
     public function store(Request $request)
     {
@@ -23,7 +24,7 @@ class HotelController extends Controller
         ]);
 
         $hotel = Hotel::create($request->all());
-        return response()->json($hotel, 201);
+        return redirect()->route('hotels.index')->with('success', 'Готель успішно додано!');
     }
 
     public function show($id)
@@ -43,7 +44,8 @@ class HotelController extends Controller
 
         $hotel = Hotel::findOrFail($id);
         $hotel->update($request->all());
-        return response()->json($hotel);
+
+        return redirect()->route('hotels.index')->with('success', 'Готель успішно оновлено!');
     }
 
     public function destroy($id)
@@ -52,4 +54,16 @@ class HotelController extends Controller
         $hotel->delete();
         return response()->json(null, 204);
     }
+
+    public function create()
+    {
+        return view('hotels.create');
+    }
+
+    public function edit($id)
+    {
+        $hotel = Hotel::findOrFail($id);
+        return view('hotels.edit', compact('hotel'));
+    }
+
 }

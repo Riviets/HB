@@ -9,6 +9,8 @@ Route::get('/', function () {
 
 Route::get('/hotels', [HotelController::class, 'index'])->name('hotels.index');
 Route::post('/hotels', [HotelController::class, 'store'])->name('hotels.store');
+Route::get('/hotels/create', [HotelController::class, 'create'])->name('hotels.create');
 Route::get('/hotels/{id}', [HotelController::class, 'show'])->name('hotels.show');
 Route::put('/hotels/{id}', [HotelController::class, 'update'])->name('hotels.update');
 Route::delete('/hotels/{id}', [HotelController::class, 'destroy'])->name('hotels.destroy');
+Route::get('/hotels/{id}/edit', [HotelController::class, 'edit'])->name('hotels.edit');
