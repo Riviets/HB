@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HotelController;
 use App\Http\Controllers\RoomController;
+use App\Http\Controllers\BookingController;
+
 
 
 Route::get('/', function () {
@@ -25,3 +27,6 @@ Route::get('/rooms/{id}', [RoomController::class, 'show'])->name('rooms.show');
 Route::get('/rooms/{id}/edit', [RoomController::class, 'edit'])->name('rooms.edit');
 Route::put('/rooms/{id}', [RoomController::class, 'update'])->name('rooms.update');
 Route::delete('/rooms/{id}', [RoomController::class, 'destroy'])->name('rooms.destroy');
+
+
+

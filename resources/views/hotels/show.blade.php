@@ -34,6 +34,7 @@
                         <td>{{ $room->capacity }}</td>
                         <td>{{ $room->price_per_night }}</td>
                         <td>
+                            <a href="{{ route('bookings.create', $room->id) }}" class="btn btn-success">Забронювати</a>
                             <a href="{{ route('rooms.edit', $room->id) }}" class="btn btn-info btn-sm">Редагувати</a>
                             <form action="{{ route('rooms.destroy', $room->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Ви впевнені, що хочете видалити цю кімнату?');">
                                 @csrf
