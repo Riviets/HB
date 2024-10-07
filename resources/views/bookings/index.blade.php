@@ -9,6 +9,11 @@
 <body>
     <div class="container mt-5">
         <h1>Список бронювань</h1>
+
+        <!-- Кнопка для додавання нового бронювання -->
+        <h2>Додати нове бронювання</h2>
+        <a href="{{ route('bookings.create') }}" class="btn btn-primary mb-4">Додати бронювання</a>
+
         <table class="table table-striped">
             <thead>
                 <tr>

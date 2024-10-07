@@ -10,6 +10,9 @@
     <div class="container mt-5">
         <h1>Список готелів</h1>
         <a href="{{ route('hotels.create') }}" class="btn btn-primary mb-3">Додати новий готель</a>
+        
+        <!-- Кнопка для перегляду бронювань -->
+        <a href="{{ route('bookings.index') }}" class="btn btn-secondary mb-3">Переглянути бронювання</a>
 
         <table class="table table-striped">
             <thead>

@@ -30,7 +30,6 @@ Route::delete('/rooms/{id}', [RoomController::class, 'destroy'])->name('rooms.de
 
 
 Route::get('/rooms/{room}/bookings/create', [BookingController::class, 'create'])->name('bookings.create');
+Route::resource('bookings', BookingController::class);
 Route::get('/bookings', [BookingController::class, 'index'])->name('bookings.index');
-Route::get('/bookings/{booking}/edit', [BookingController::class, 'edit'])->name('bookings.edit');
-Route::put('/bookings/{booking}', [BookingController::class, 'update'])->name('bookings.update');
-Route::delete('/bookings/{booking}', [BookingController::class, 'destroy'])->name('bookings.destroy');
+Route::get('/get-rooms/{hotelId}', [BookingController::class, 'getRooms']);

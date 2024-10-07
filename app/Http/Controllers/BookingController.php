@@ -4,14 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Booking;
 use App\Models\Room;
+use App\Models\Hotel;
 use Illuminate\Http\Request;
 
 class BookingController extends Controller
 {
-    public function create($roomId)
+    public function create()
     {
-        $room = Room::findOrFail($roomId);
-        return view('bookings.create', compact('room'));
+        $hotels = Hotel::all();
+        return view('bookings.create', compact('hotels'));
     }
 
     public function store(Request $request)
@@ -35,8 +36,10 @@ class BookingController extends Controller
     public function index()
     {
         $bookings = Booking::with('room')->get();
-        return view('bookings.index', compact('bookings'));
+        $rooms = Room::all();
+        return view('bookings.index', compact('bookings', 'rooms'));
     }
+
 
     public function edit($id)
     {
@@ -63,4 +66,11 @@ class BookingController extends Controller
         $booking->delete();
         return redirect()->route('bookings.index')->with('success', 'Бронювання успішно видалено!');
     }
+
+    public function getRooms($hotelId)
+    {
+        $rooms = Room::where('hotel_id', $hotelId)->get();
+        return response()->json($rooms);
+    }
+
 }
