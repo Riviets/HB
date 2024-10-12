@@ -6,6 +6,7 @@ use App\Models\Booking;
 use App\Models\Room;
 use App\Models\Hotel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BookingController extends Controller
 {
@@ -23,14 +24,14 @@ class BookingController extends Controller
             'duration_nights' => 'required|integer|min:1',
         ]);
 
-        Booking::create([
-            'user_id' => 1,
-            'room_id' => $request->room_id,
-            'check_in_date' => $request->check_in_date,
-            'duration_nights' => $request->duration_nights,
-        ]);
+        $booking = new Booking();
+        $booking->user_id = 1;
+        $booking->room_id = $request->room_id;
+        $booking->check_in_date = $request->check_in_date;
+        $booking->duration_nights = $request->duration_nights;
+        $booking->save();
 
-        return redirect()->route('bookings.index')->with('success', 'Бронювання успішно додано!');
+        return redirect()->route('bookings.index')->with('success', 'Бронювання успішно створено!');
     }
 
     public function index()

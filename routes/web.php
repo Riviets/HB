@@ -4,7 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HotelController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\BookingController;
-
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
+use Illuminate\Support\Facades\Auth;
 
 
 Route::get('/', function () {
@@ -33,3 +36,17 @@ Route::get('/rooms/{room}/bookings/create', [BookingController::class, 'create']
 Route::resource('bookings', BookingController::class);
 Route::get('/bookings', [BookingController::class, 'index'])->name('bookings.index');
 Route::get('/get-rooms/{hotelId}', [BookingController::class, 'getRooms']);
+Route::post('/bookings', [BookingController::class, 'store'])->name('bookings.store');
+
+
+Route::resource('users', UserController::class);
+Route::get('users/{id}', [UserController::class, 'show'])->name('users.show');
+
+
+Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('login', [LoginController::class, 'login']);
+Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+Route::post('register', [RegisterController::class, 'register']);
+Auth::routes();
