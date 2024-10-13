@@ -8,7 +8,9 @@
         <p><strong>Рейтинг:</strong> {{ $hotel->rating }}</p>
 
         <h2>Кімнати</h2>
+        @if(Auth::check() && auth()->user()->isAdmin())
         <a href="{{ route('rooms.create') }}" class="btn btn-primary mb-3">Додати кімнату</a>
+        @endif
 
         <table class="table table-striped">
             <thead>
@@ -29,12 +31,14 @@
                         <td>{{ $room->price_per_night }}</td>
                         <td>
                             <a href="{{ route('bookings.create', $room->id) }}" class="btn btn-success">Забронювати</a>
+                            @if(Auth::check() && auth()->user()->isAdmin())
                             <a href="{{ route('rooms.edit', $room->id) }}" class="btn btn-info btn-sm">Редагувати</a>
                             <form action="{{ route('rooms.destroy', $room->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Ви впевнені, що хочете видалити цю кімнату?');">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm">Видалити</button>
                             </form>
+                            @endif
                         </td>
                     </tr>
                 @endforeach

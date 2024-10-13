@@ -20,7 +20,9 @@
     </div>
 
     <div class="mb-3">
+        @if(Auth::check() && auth()->user()->isAdmin())
         <a href="{{ route('hotels.create') }}" class="btn btn-primary">Додати новий готель</a>
+        @endif
         <a href="{{ route('bookings.index') }}" class="btn btn-secondary">Переглянути бронювання</a>
         <a href="{{ route('hotels.index', ['sort' => 'rating']) }}" class="btn btn-warning">Сортувати за рейтингом</a> <!-- Передача параметра -->
     </div>
@@ -45,12 +47,16 @@
                     <td>{{ $hotel->location }}</td>
                     <td>{{ $hotel->rating }}</td>
                     <td>
+                        @if(Auth::check() && auth()->user()->isAdmin())
                         <form action="{{ route('hotels.destroy', $hotel->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Ви впевнені, що хочете видалити цей готель?');">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm">Видалити</button>
                         </form>
                         <a href="{{ route('hotels.edit', $hotel->id) }}" class="btn btn-info btn-sm">Редагувати</a>
+                        @else
+                        <p><strong>-</strong></p>
+                        @endif
                     </td>
                 </tr>
             @endforeach
