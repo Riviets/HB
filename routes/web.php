@@ -21,6 +21,7 @@ Route::get('/hotels/{id}', [HotelController::class, 'show'])->name('hotels.show'
 Route::put('/hotels/{id}', [HotelController::class, 'update'])->name('hotels.update');
 Route::delete('/hotels/{id}', [HotelController::class, 'destroy'])->name('hotels.destroy');
 Route::get('/hotels/{id}/edit', [HotelController::class, 'edit'])->name('hotels.edit');
+Route::get('/hotels/sorted', [HotelController::class, 'sortByRating'])->name('hotels.sorted');
 
 
 Route::get('/rooms', [RoomController::class, 'index'])->name('rooms.index');

@@ -7,9 +7,15 @@ use Illuminate\Http\Request;
 
 class HotelController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $hotels = Hotel::all();
+        $query = Hotel::query();
+
+        if ($request->get('sort') === 'rating') {
+            $query->orderBy('rating', 'desc');
+        }
+
+        $hotels = $query->get();
         return view('hotels.index', compact('hotels'));
     }
 
@@ -65,6 +71,12 @@ class HotelController extends Controller
     {
         $hotel = Hotel::findOrFail($id);
         return view('hotels.edit', compact('hotel'));
+    }
+
+    public function sortByRating()
+    {
+        $hotels = Hotel::orderBy('rating', 'desc')->get();
+        return view('hotels.index', compact('hotels'));
     }
 
 }

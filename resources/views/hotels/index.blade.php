@@ -19,8 +19,11 @@
         </div>
     </div>
 
-    <a href="{{ route('hotels.create') }}" class="btn btn-primary mb-3">Додати новий готель</a>
-    <a href="{{ route('bookings.index') }}" class="btn btn-secondary mb-3">Переглянути бронювання</a>
+    <div class="mb-3">
+        <a href="{{ route('hotels.create') }}" class="btn btn-primary">Додати новий готель</a>
+        <a href="{{ route('bookings.index') }}" class="btn btn-secondary">Переглянути бронювання</a>
+        <a href="{{ route('hotels.index', ['sort' => 'rating']) }}" class="btn btn-warning">Сортувати за рейтингом</a> <!-- Передача параметра -->
+    </div>
 
     <table class="table table-striped">
         <thead>
