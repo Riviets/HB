@@ -7,7 +7,7 @@
         <p><strong>ID:</strong> {{ $user->id }}</p>
         <p><strong>Ім'я:</strong> {{ $user->name }}</p>
         <p><strong>Електронна пошта:</strong> {{ $user->email }}</p>
-        
+        <p><strong>Роль:</strong> {{ $user->role }}</p>
         <a href="{{ route('hotels.index') }}" class="btn btn-secondary">Назад до готелів</a>
     </div>
 @endsection
